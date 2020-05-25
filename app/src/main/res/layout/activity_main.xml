@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/generateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="70dp"
+        android:text="generate new secret color Code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="generateRandomColorCode"/>
+
+    <TextView
+        android:id="@+id/textViewSelectPin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp"
+        android:text="Select your pin(s)  to be modified:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/generateButton" />
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutCheckBoxes"
+        android:layout_width="191dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="110dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSelectPin">
+
+        <CheckBox
+            android:id="@+id/checkBoxA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:tag="0"
+            android:text="A"
+            android:onClick="putCheckedField"/>
+
+        <CheckBox
+            android:id="@+id/checkBoxB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:tag="1"
+            android:text="B"
+            android:onClick="putCheckedField"/>
+
+        <CheckBox
+            android:id="@+id/checkBoxC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:tag="2"
+            android:text="C"
+            android:onClick="putCheckedField"/>
+
+        <CheckBox
+            android:id="@+id/checkBoxD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:tag="3"
+            android:text="D"
+            android:onClick="putCheckedField"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="131dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="131dp"
+        android:text="Your Color Code Guess:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinearLayoutCheckBoxes" />
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutTextViews"
+        android:layout_width="413dp"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <TextView
+            android:id="@+id/textViewA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFA7A6A6"
+            android:tag="0"
+            android:text="A"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:layout_marginEnd="10dp"/>
+
+        <TextView
+            android:id="@+id/textViewB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFA7A6A6"
+            android:tag="1"
+            android:text="B"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:layout_marginEnd="10dp"/>
+
+        <TextView
+            android:id="@+id/textViewC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFA7A6A6"
+            android:tag="2"
+            android:text="C"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:layout_marginEnd="10dp"/>
+
+        <TextView
+            android:id="@+id/textViewD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFA7A6A6"
+            android:tag="3"
+            android:text="D"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="159dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="160dp"
+        android:text="Color Choices:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinearLayoutTextViews" />
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutRadioButtons"
+        android:layout_width="109dp"
+        android:layout_height="195dp"
+        android:layout_marginStart="151dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="151dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/radioButtonRed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Red"
+                android:onClick="pickColor"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonGreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Green"
+                android:onClick="pickColor"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonBlue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Blue"
+                android:onClick="pickColor"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonYellow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Yellow"
+                android:onClick="pickColor"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonCyan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cyan"
+                android:onClick="pickColor"/>
+
+            <RadioButton
+                android:id="@+id/radioButtonMagenta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Magenta"
+                android:onClick="pickColor"/>
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/dismissButton"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="216dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/numberOfAttemptsTextView"
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        android:onClick="compareColorCode"/>
+
+    <TextView
+        android:id="@+id/numberOfAttemptsTextView"
+        android:layout_width="109dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="274dp"
+        android:text="Number of Attempts Needed: "
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinearLayoutTextViews" />
+
+    <TextView
+        android:id="@+id/amountOfAttempts"
+        android:layout_width="39dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="18dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numberOfAttemptsTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
