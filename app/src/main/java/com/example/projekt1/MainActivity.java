@@ -18,6 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.w3c.dom.Text;
 
+import java.util.Arrays;
 import java.util.Random;
 
 
@@ -37,9 +38,15 @@ public class MainActivity extends AppCompatActivity {
     // this is the random color code
     private static int[] randomColorCode = new int[4];
 
-    private static boolean[] result = new boolean[4];
+    private static int[] result = new int[4];
 
-    private static int attempts = 0;
+
+    private static String rightOrWrongField = "";
+
+    private static int counterFullyCorrect = 0;
+    private static int counterWrongPosition = 0;
+
+    private static int counterAttempts = 0;
 
 
 
@@ -106,6 +113,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         Toast.makeText(this, "A new secret color code has been generated. GOOD LUCK!", Toast.LENGTH_SHORT).show();
+        counterAttempts = 0;
+        TextView counter = (TextView) findViewById(R.id.amountOfAttempts);
+        counter.setText(Integer.toString(counterAttempts));
     }
 
 
@@ -114,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                                 findViewById(R.id.textViewC),findViewById(R.id.textViewD)};
 
         FloatingActionButton floatingActionButton = (FloatingActionButton) view;
-        String rightOrWrongField = "";
+
         ColorDrawable colorDrawableA = (ColorDrawable)(textViews[0].getBackground());
         int colorA = colorDrawableA.getColor();
         ColorDrawable colorDrawableB = (ColorDrawable)(textViews[1].getBackground());
@@ -124,36 +134,63 @@ public class MainActivity extends AppCompatActivity {
         ColorDrawable colorDrawableD = (ColorDrawable)(textViews[3].getBackground());
         int colorD = colorDrawableD.getColor();
 
+
         int[] submittedColorCode = {colorA, colorB, colorC, colorD};
+        boolean colorCodeFullyChosen = false;
+
+        //reset both counter
+        counterFullyCorrect = 0;
+        counterWrongPosition = 0;
         for(int i = 0; i < 4; i++){
-            if(randomColorCode[i] == submittedColorCode[i]){
-                rightOrWrongField += "Field " + i + " is correct!\n";
-                result[i] = true;
+            if(submittedColorCode[i] == Color.parseColor("#FFA7A6A6")){
+                Toast.makeText(this, "Please choose a color for all 4 pins!", Toast.LENGTH_SHORT).show();
+                colorCodeFullyChosen = false;
+                break;
             }
             else{
-                rightOrWrongField += "Field " + i + " is not correct!\n";
-                result[i] = false;
+                colorCodeFullyChosen = true;
+                if(randomColorCode[i] == submittedColorCode[i]){
+                    counterFullyCorrect++;
+                    result[i] = 0;
+                }
+                else if(randomColorCode[i] != submittedColorCode[i]){
+                    if(Arrays.asList(randomColorCode).contains(submittedColorCode[i])){
+                        counterWrongPosition++;
+                        result[i] = 1;  // stands for color is on wrong position
+                    }
+                    else{
+                        result[i] = 2;  // stands for color isn't in the code
+                    }
+
+                }
             }
         }
+        rightOrWrongField = counterFullyCorrect + " fully correct, " + counterWrongPosition + " at wrong position.\nTRY AGAIN!";
 
-        Toast.makeText(this, rightOrWrongField, Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, result.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        if(colorCodeFullyChosen){
+            TextView counter = (TextView) findViewById(R.id.amountOfAttempts);
+            Intent intent = new Intent(this, result.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        startActivity(intent);
+            counterAttempts++;
+            counter.setText(Integer.toString(counterAttempts));
+            startActivity(intent);
 
-
+        }
 
 
     }
 
 
 
-    public static boolean[] getResult(){
+    public static int[] getResult(){
         return result;
     }
 
-    
+    public static String getRightOrWrongField(){
+        return rightOrWrongField;
+    }
+
 
 
     @Override
